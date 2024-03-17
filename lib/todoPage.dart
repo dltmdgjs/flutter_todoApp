@@ -1,4 +1,5 @@
 // TodoPage
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TodoPage extends StatefulWidget {
@@ -27,7 +28,7 @@ class _TodoPageState extends State<TodoPage> {
           Center(
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 50,
                   child: const Center(
                       child: Text(
@@ -36,8 +37,8 @@ class _TodoPageState extends State<TodoPage> {
                       )
                   ),
                 ),
-                SizedBox(
-                  height: 300,
+                LimitedBox(
+                  maxHeight: 300,
                   child: Container(
                     margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
                     decoration: BoxDecoration(
@@ -51,19 +52,38 @@ class _TodoPageState extends State<TodoPage> {
                     ),
                     child: ListView.builder(
                       itemBuilder: (context, index) {
-                        return CheckboxListTile(
-                          title: Text(todoList[index]),
-                          subtitle: Text('메모: '),
-                          activeColor: Colors.blueGrey,
-                          checkColor: Colors.white,
-                          controlAffinity: ListTileControlAffinity.platform,
-                          value: _isChecked[index],
-                          side: BorderSide(color: Colors.blueGrey, width: 1.5),
-                          onChanged: (value) {
-                            setState(() {
-                              _isChecked[index] = value!;
-                            });
-                          },
+                        return Dismissible(
+                            key: Key(todoList[index]),
+                            onDismissed: (direction) {
+                              setState(() {
+                                todoList.removeAt(index);
+                              });
+                            },
+                            direction: DismissDirection.endToStart,
+                            child: CheckboxListTile(
+                              title: Text(todoList[index]),
+                              subtitle: Text('메모: '),
+                              activeColor: Colors.blueGrey,
+                              checkColor: Colors.white,
+                              controlAffinity: ListTileControlAffinity.platform,
+                              value: _isChecked[index],
+                              side: BorderSide(color: Colors.blueGrey, width: 1.5),
+                              onChanged: (value) {
+                                setState(() {
+                                  _isChecked[index] = value!;
+                                });
+                              },
+                            ),
+                            background: Container(
+                              color: Colors.redAccent,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text("<- 삭제", style: TextStyle(color: Colors.white),),
+                                  SizedBox(width: 10,)
+                                ],
+                              ),
+                            ),
                         );
                       },
                       itemCount: todoList.length,

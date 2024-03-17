@@ -1,16 +1,16 @@
 // ShopPage
 import 'package:flutter/material.dart';
 
-class ShopPage extends StatefulWidget {
-  const ShopPage({super.key});
+class ChallengePage extends StatefulWidget {
+  const ChallengePage({super.key});
 
   @override
-  State<ShopPage> createState() => _ShopPageState();
+  State<ChallengePage> createState() => _ChallengePageState();
 }
 
-class _ShopPageState extends State<ShopPage> {
+class _ChallengePageState extends State<ChallengePage> {
 
-  List<String> shopList = ['상품a', '상품b', '상품c'];
+  List<String> challengeList = ['challenge 1', 'challenge 2', 'challenge 3'];
 
   @override
   Widget build(BuildContext context){
@@ -18,11 +18,11 @@ class _ShopPageState extends State<ShopPage> {
       body: Center(
           child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
+              crossAxisCount: 2,
               mainAxisSpacing: 3,
               crossAxisSpacing: 3,
             ),
-            itemCount: shopList.length,
+            itemCount: challengeList.length,
             itemBuilder: (context, index) => Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -31,7 +31,7 @@ class _ShopPageState extends State<ShopPage> {
               width: 100,
               height: 100,
               child: Center(
-                  child: Text(shopList[index])
+                  child: Text(challengeList[index])
               ),
             ),
           )

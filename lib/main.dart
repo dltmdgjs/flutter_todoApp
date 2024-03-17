@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/calendarPage.dart';
 import 'package:my_app/menuPage.dart';
-import 'package:my_app/shopPage.dart';
+import 'package:my_app/challengePage.dart';
 import 'package:my_app/todoPage.dart';
 
 
@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _navIndex = [
     TodoPage(),
     CalendarPage(),
-    ShopPage(),
+    ChallengePage(),
   ];
 
   // 인덱스 변경 함수 정의.
@@ -95,8 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Calender',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag_outlined),
-            label: 'Shop',
+            icon: Icon(Icons.handshake_outlined),
+            label: 'Challenge',
           ),
         ],
         selectedItemColor: Colors.blueGrey,
